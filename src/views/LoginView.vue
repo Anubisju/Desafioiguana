@@ -1,9 +1,9 @@
 <template>
   <main class="login">
-    <section class="register" @submit.prevent="register">
+    <section class="register">
       <div class="row">
         <div class="col-8">
-          <form>
+          <form @submit.prevent="register">
             <h>¿Ingresando por primera vez? por favor registrese</h> <br />
             <h2>Registro Usuarios</h2>
             <div class="mb-3 row">

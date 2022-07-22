@@ -43,6 +43,7 @@ import { onBeforeMount } from "vue";
 import { useStore } from "vuex";
 
 export default {
+  name: "App",
   setup() {
     const store = useStore();
 

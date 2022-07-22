@@ -1,26 +1,57 @@
 <template>
-  <main class="home">
-    <!-- Bienvenido: {{ $store.state.user.email }} -->
-    <h1>SELECCIONE LAS FARMACIAS QUE DESEA VER..</h1>
-  </main>
-  <div class="d-grid gap-2 col-6 mx-auto">
-    <button class="btn btn-primary botonhome" type="button">FARMACIAS</button>
-    <button class="btn btn-primary botonhome" type="button">
-      FARMACIAS DE TURNO
-    </button>
+  <div class="container">
+    <h1>Obtener datos desde web api</h1>
+    <p>Nos conectamos mediante axios a una api en firebase y la consumimos</p>
+    <table class="table">
+      <thead>
+        <th>id</th>
+        <th>fecha</th>
+        <th>region</th>
+        <th>comuna</th>
+        <th>nombre</th>
+        <th>direccion</th>
+        <th>telefono</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr v-for="item in farmacias" :key="item.id">
+          <td>{{ item.id }}</td>
+          <td>{{ item.fecha }}</td>
+          <td>{{ item.fk_region }}</td>
+          <td>{{ item.fk_comuna }}</td>
+          <td>{{ item.local_nombre }}</td>
+          <td>{{ item.local_direccion }}</td>
+          <td>{{ item.local_telefono }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
+import FarmService from "../FarmService";
 export default {
-  setup() {},
+  name: "HomeView",
+  data() {
+    return {
+      farmacias: [],
+    };
+  },
+  created() {
+    this.retrieveFarmacias();
+  },
+
+  methods: {
+    retrieveFarmacias() {
+      FarmService.getAll()
+        .then((response) => {
+          this.farmacias = response.data;
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
 };
 </script>
-
-<style>
-.botonhome {
-  color: rgb(56, 61, 61);
-  background-color: rgb(108, 155, 209) !important;
-  border-color: rgb(107, 143, 189);
-}
-</style>
