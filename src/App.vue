@@ -8,14 +8,16 @@
           width="150"
           height="150"
         />
+
         BIENVENIDOS AL PORTAL OFICIAL DE BUSQUEDAS DE FARMACIAS A NIVEL NACIONAL
       </a>
     </div>
   </nav>
   <div id="nav" v-if="$store.state.user">
-    <router-link to="/">Home</router-link> <br />
-    <!-- <router-link to="/aboutView">About</router-link> -->
-    Bienvenido: {{ $store.state.user.email }}
+    <h6>Bienvenido: {{ $store.state.user.email }}</h6>
+    <router-link to="/">Farmacias de turno</router-link> |
+    <router-link to="/aboutView">Farmacias a lo largo del país</router-link>
+
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button
         class="btn btn-primarylogout me-md-2"
@@ -58,6 +60,10 @@ export default {
 .btn-primarylogout {
   background-color: rgb(125, 142, 164) !important;
 }
+.d-grid {
+  float: right !important;
+}
+
 .primernav {
   background-image: url("../src/assets/fondopantalla.jpg") !important;
   background-position: center;
