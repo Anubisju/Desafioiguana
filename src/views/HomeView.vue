@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import FarmService from "../FarmService";
+import FarmTurno from "../FarmTurno";
+
 export default {
   name: "HomeView",
   data() {
@@ -38,27 +39,14 @@ export default {
 
   methods: {
     retrieveFarmacias() {
-      FarmService.getAll()
+      FarmTurno.getAll()
         .then((response) => {
           this.farmacias = response.data;
-          console.log(response.data);
         })
         .catch((e) => {
-          console.log(e);
+          console.error(e);
         });
     },
-    /*
-    1. capturar la comuna que quiero buscar
-    2. mostrar el input de la comuna que necesito encontrar
-    3. almacenar ese valor del input en una variable
-    4. hacer una función de busqueda 
-    (tiene que ser como lo que hicimos en el navegador)
-    5. mostrar variable nueva de datos filtrados de las farmacias
-    (this.farmacias => this.filtroFarmacias)
-    6. reeemplazar que te muestre solo la farmacia que viene en el filtro
-
-    => puedes usar console.log("soy tu amigo :3")
-    */
   },
 };
 </script>

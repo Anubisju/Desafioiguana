@@ -16,7 +16,7 @@
   <div id="nav" v-if="$store.state.user">
     <h6>Bienvenido: {{ $store.state.user.email }}</h6>
     <router-link to="/">Farmacias de turno</router-link> |
-    <router-link to="/aboutView">Farmacias a lo largo del país</router-link>
+    <router-link to="/about">Farmacias a lo largo del país</router-link>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
       <button
