@@ -14,11 +14,11 @@
         </div>
 
         <div class="form-group">
-          <label>Nombre</label>
+          <label>Nombre Farmacia</label>
           <input
             type="text"
             class="form-control"
-            v-model="message.nombre"
+            v-model="message.local_nombre"
             required
           />
         </div>
@@ -50,28 +50,20 @@ export default {
       message: {},
     };
   },
-  //   created() {
-  //     let dbRef = db.collection("messages").doc(this.$route.params.item.local_id);
-  //     dbRef
-  //       .get()
-  //       .then((doc) => {
-  //         this.message = doc.data();
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   },
+  created() {
+    this.message.local_id = this.$route.params.local_id;
+  },
 
   methods: {
     guardarcomentarios(event) {
       event.preventDefault();
       db.collection("messages")
-        .doc(this.$route.params.id)
-        .update(this.message)
-        .update(this.nombre)
-        .then(() => {
-          console.log("Mensaje actualizado!");
-          this.$router.push("/opiniones");
+        .add(this.message)
+        .then((ref) => {
+          alert("Sus comentarios fueron enviados! " + ref.local_id);
+          this.message.local_id = "";
+          this.message.local_nombre = "";
+          this.message.message = "";
         })
         .catch((error) => {
           console.log(error);
