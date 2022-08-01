@@ -24,6 +24,14 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: LoginView,
+  },
+  {
+    path: '/opiniones/:local_id',
+    name: 'opiniones',
+    component: () => import('../components/ComentariosTurno.vue'),
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 
