@@ -36,7 +36,14 @@
           <td>{{ item.funcionamiento_hora_cierre }}</td>
           <td>
             <router-link
-              :to="{ name: 'opiniones', params: { local_id: item.local_id } }"
+              :to="{
+                name: 'opiniones',
+                params: {
+                  local_id: item.local_id,
+                  local_nombre: item.local_nombre,
+                  local_direccion: item.local_direccion,
+                },
+              }"
               class="btn btn-primary"
               >Comentarios
             </router-link>
@@ -91,9 +98,9 @@ export default {
           console.error(e);
         });
     },
-    // searchData() {
-    //   this.retrieveFarmacias();
-    // },
+    /*  searchData() {
+      this.retrieveFarmacias();
+    }, */
   },
 };
 </script>
@@ -104,6 +111,7 @@ div {
 
 .table {
   background-color: transparent;
+  color: black;
 }
 
 .btn {
