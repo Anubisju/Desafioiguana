@@ -26,7 +26,7 @@ const routes = [
     component: LoginView,
   },
   {
-    path: '/opiniones/:local_id',
+    path: '/opiniones/:local_id/local_nombre/local_direccion',
     name: 'opiniones',
     component: () => import('../components/ComentariosTurno.vue'),
     meta: {

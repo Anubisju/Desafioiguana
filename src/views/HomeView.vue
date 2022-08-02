@@ -36,24 +36,27 @@
           <td>{{ item.funcionamiento_hora_cierre }}</td>
           <td>
             <router-link
-              :to="{ name: 'opiniones', params: { local_id: item.local_id } }"
+              :to="{
+                name: 'opiniones',
+                params: {
+                  local_id: item.local_id,
+                  local_nombre: item.local_nombre,
+                  local_direccion: item.local_direccion,
+                },
+              }"
               class="btn btn-primary"
               >Comentarios
             </router-link>
-
-            <!-- <router-link to="opiniones/:local_id , id: item.local_id ">
-              <button class="btn btn-primary">Comentarios</button>
+            <router-link
+              :to="{ name: 'opiniones', params: { local_id: item.local_id } }"
+              class="btn btn-primary"
+              >Ver Comentarios
             </router-link>
-            <router-view />
-            <router-link to="opiniones/:local_id , id: item.local_id ">
-              <button class="btn btn-primary">Ver Comentarios</button>
+            <router-link
+              :to="{ name: 'opiniones', params: { local_id: item.local_id } }"
+              class="btn btn-primary"
+              >Mapa
             </router-link>
-            <router-view />
-
-            <router-link to="mapa">
-              <button class="btn btn-primary">Mapa</button>
-            </router-link>
-            <router-view /> -->
           </td>
         </tr>
       </tbody>
@@ -86,9 +89,9 @@ export default {
           console.error(e);
         });
     },
-    // searchData() {
-    //   this.retrieveFarmacias();
-    // },
+    /*  searchData() {
+      this.retrieveFarmacias();
+    }, */
   },
 };
 </script>
@@ -99,6 +102,7 @@ div {
 
 .table {
   background-color: transparent;
+  color: black;
 }
 
 .btn {

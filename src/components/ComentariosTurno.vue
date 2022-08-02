@@ -24,7 +24,17 @@
         </div>
 
         <div class="form-group">
-          <label>Mensaje</label>
+          <label>Dirección</label>
+          <input
+            type="text"
+            class="form-control"
+            v-model="message.local_direccion"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Comentarios</label>
           <textarea
             class="form-control"
             v-model="message.message"
@@ -52,6 +62,8 @@ export default {
   },
   created() {
     this.message.local_id = this.$route.params.local_id;
+    this.message.local_nombre = this.$route.params.local_nombre;
+    this.message.local_direccion = this.$route.params.local_direccion;
   },
 
   methods: {
@@ -63,6 +75,7 @@ export default {
           alert("Sus comentarios fueron enviados! " + ref.local_id);
           this.message.local_id = "";
           this.message.local_nombre = "";
+          this.message.local_direccion = "";
           this.message.message = "";
         })
         .catch((error) => {
