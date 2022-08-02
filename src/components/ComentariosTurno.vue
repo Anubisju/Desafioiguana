@@ -60,7 +60,7 @@ export default {
       db.collection("messages")
         .add(this.message)
         .then((ref) => {
-          alert("Sus comentarios fueron enviados! " + ref.local_id);
+          alert("Sus comentarios fueron enviados! " + ref);
           this.message.local_id = "";
           this.message.local_nombre = "";
           this.message.message = "";

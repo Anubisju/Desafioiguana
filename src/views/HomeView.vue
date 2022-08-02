@@ -41,19 +41,24 @@
               >Comentarios
             </router-link>
 
-            <!-- <router-link to="opiniones/:local_id , id: item.local_id ">
+            <!-- 
+               <router-link to="opiniones/:local_id , id: item.local_id ">
               <button class="btn btn-primary">Comentarios</button>
             </router-link>
-            <router-view />
-            <router-link to="opiniones/:local_id , id: item.local_id ">
-              <button class="btn btn-primary">Ver Comentarios</button>
-            </router-link>
-            <router-view />
+          <router-view /> -->
 
+            <router-link
+              :to="{ name: 'ver', params: { local_id: item.local_id } }"
+              class="btn btn-primary"
+              >Ver
+            </router-link>
+
+            <!-- 
+            <router-view /> 
             <router-link to="mapa">
               <button class="btn btn-primary">Mapa</button>
             </router-link>
-            <router-view /> -->
+            <router-view />  -->
           </td>
         </tr>
       </tbody>

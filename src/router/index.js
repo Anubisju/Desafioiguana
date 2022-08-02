@@ -32,7 +32,16 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/ver/:local_id',
+    name: 'ver',
+    component: () => import('../components/VerComentarios.vue'),
+    meta: {
+      requiresAuth: true
+    }
   }
+
 ]
 
 const router = createRouter({
