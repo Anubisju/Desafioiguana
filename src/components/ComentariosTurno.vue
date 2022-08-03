@@ -70,11 +70,12 @@ export default {
     };
   },
   created() {
+    console.log("created ComentariosTurno");
     this.message.local_id = this.$route.params.local_id;
     this.message.local_nombre = this.$route.params.local_nombre;
     this.message.local_direccion = this.$route.params.local_direccion;
     this.message.correo_usuario = this.$store.state.user.email;
-    console.log(this);
+    console.log(this.message);
   },
 
   methods: {
@@ -83,13 +84,11 @@ export default {
       db.collection("messages")
         .add(this.message)
         .then((ref) => {
-          alert("Sus comentarios fueron enviados! " + ref);
+          alert("Sus comentarios fueron enviados! ", this.message, ref);
           this.message.local_id = "";
           this.message.local_nombre = "";
           this.message.local_direccion = "";
           this.message.message = "";
-          this.message.correo_usuario = "";
-          // this.message.correo_usuario = $store.state;
         })
         .catch((error) => {
           console.log(error);
