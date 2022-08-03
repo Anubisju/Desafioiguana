@@ -55,16 +55,10 @@
               >Comentarios
             </router-link>
 
-            <!-- 
-               <router-link to="opiniones/:local_id , id: item.local_id ">
-              <button class="btn btn-primary">Comentarios</button>
-            </router-link>
-          <router-view /> -->
-
             <router-link
               :to="{ name: 'ver', params: { local_id: item.local_id } }"
               class="btn btn-primary"
-              >Ver
+              >Ver Comentarios
             </router-link>
 
             <!-- 

@@ -45,6 +45,8 @@ export default {
   },
   created() {
     this.message.local_id = this.$route.params.local_id;
+    /* this.message.local_nombre = this.$route.params.local_nombre;
+    this.message.local_direccion = this.$route.params.local_direccion; */
     this.comentarios = this.getComentarios();
   },
   methods: {
