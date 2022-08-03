@@ -4,11 +4,18 @@
     <br />
     <div class="control">
       <input
-        v-model="search"
         type="text"
         class="input is-rounded btn"
-        v-on:keyup.enter="searchData"
         placeholder="🔎Buscar Farmacia"
+        @input="filtraFarmacias($event)"
+        v-model.lazy="farmaciaNombre"
+      />
+      <input
+        type="text"
+        class="input is-rounded btn"
+        placeholder="🔎Buscar Comuna"
+        @input="filtraComunas($event)"
+        v-model.lazy="comunaNombre"
       />
       <!-- <button class="button" v-on:click="searchData">🔎Buscar Farmacia</button> -->
     </div>
@@ -25,7 +32,7 @@
         <th>Horario de cierre</th>
       </thead>
       <tbody>
-        <tr v-for="item in farmacias" :key="item.local_id">
+        <tr v-for="item in farmaciasFiltradas" :key="item.local_id">
           <td>{{ item.local_id }}</td>
           <td>{{ item.fecha }}</td>
           <td>{{ item.comuna_nombre }}</td>
@@ -81,37 +88,85 @@ export default {
   data() {
     return {
       farmacias: [],
-      // search: "",
+      farmaciasFiltradas: [],
+      listafarm: [],
+      farmaciaNombre: "",
+      comunaNombre: "",
     };
   },
   created() {
     this.retrieveFarmacias();
   },
-
   methods: {
+    filtraFarmacias(event) {
+      this.farmaciasFiltradas = this.farmacias;
+      this.comunaNombre = "";
+      if (event.target.value !== "") {
+        const temp = this.farmacias.filter((farmacia) =>
+          farmacia.local_nombre
+            .toLowerCase()
+            .includes(event.target.value.toLowerCase())
+        );
+        this.farmaciasFiltradas = temp;
+      } else {
+        this.farmaciasFiltradas = this.farmacias;
+      }
+      console.log(
+        "Cambia a => ",
+        event.target.value,
+        JSON.parse(JSON.stringify(this.farmaciasFiltradas))
+      );
+    },
+    filtraComunas(event) {
+      this.farmaciasFiltradas = this.farmacias;
+      this.farmaciaNombre = "";
+      if (event.target.value !== "") {
+        const temp = this.farmacias.filter((farmacia) =>
+          farmacia.comuna_nombre
+            .toLowerCase()
+            .includes(event.target.value.toLowerCase())
+        );
+        this.farmaciasFiltradas = temp;
+      } else {
+        this.farmaciasFiltradas = this.farmacias;
+      }
+      console.log(
+        "Cambia a => ",
+        event.target.value,
+        JSON.parse(JSON.stringify(this.farmaciasFiltradas))
+      );
+    },
     retrieveFarmacias() {
       FarmTurno.getAll()
         .then((response) => {
           this.farmacias = response.data;
+          this.farmaciasFiltradas = response.data;
         })
         .catch((e) => {
           console.error(e);
         });
     },
-    /*  searchData() {
-      this.retrieveFarmacias();
-    }, */
+    searchFarmacia: function (event) {
+      event.preventDefault();
+      console.log(event.target.value);
+      console.log(this.farmacias);
+      this.farmacias = this.farmacias.filter(
+        (f) => f.comuna_nombre === event.target.value
+      );
+    },
   },
 };
 </script>
 <style scoped>
 div {
-  background-color: transparent;
+  background-color: white;
+  opacity: 0.8;
 }
 
 .table {
-  background-color: transparent;
+  background-color: white;
   color: black;
+  opacity: 0.8;
 }
 
 .btn {

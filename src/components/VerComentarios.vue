@@ -1,13 +1,37 @@
 <template>
-  <h1>Comentarios para id: {{ this.message.local_id }}</h1>
-  <ul style="border: 1px solid red">
-    <template v-for="(comentario, i) in comentarios" :key="i">
-      <li v-if="comentario.local_id === this.message.local_id">
-        {{ comentario.message }}
-      </li>
+  <div class="container bg-light">
+    <h1>Comentarios para farmacia: {{ comentarios[0].local_nombre }}</h1>
+    <template v-if="comentarios.length > 0">
+      <ul>
+        <template v-for="(comentario, i) in comentarios" :key="i">
+          <li v-if="comentario.local_id === this.message.local_id">
+            {{ comentario.message }} - {{ comentario.usuario }}
+          </li>
+        </template>
+      </ul>
     </template>
-  </ul>
+    <template v-else> <p>cargando...</p> </template>
+  </div>
 </template>
+<style lang="css">
+.container {
+  padding-top: 5px;
+  padding-bottom: 2em;
+}
+h1 {
+  margin-top: 12px;
+}
+ul {
+  padding: 0;
+}
+ul > li {
+  list-style: none;
+  padding: 1em;
+  border: 1px solid rgb(194, 194, 194);
+  border-radius: 5px;
+  margin-top: 5px;
+}
+</style>
 <script>
 import { db } from "../firebase/index";
 
@@ -39,6 +63,9 @@ export default {
                   .stringValue,
               message:
                 a._delegate._document.data.value.mapValue.fields.message
+                  .stringValue,
+              usuario:
+                a._delegate._document.data.value.mapValue.fields.usuario
                   .stringValue,
             })
           );

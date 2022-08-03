@@ -54,7 +54,16 @@
 <script>
 import { db } from "../firebase/index";
 
+import { onBeforeMount } from "vue";
+import { useStore } from "vuex";
 export default {
+  setup() {
+    const store = useStore();
+
+    onBeforeMount(() => {
+      store.dispatch("fetchUser");
+    });
+  },
   data() {
     return {
       message: {},
@@ -64,6 +73,8 @@ export default {
     this.message.local_id = this.$route.params.local_id;
     this.message.local_nombre = this.$route.params.local_nombre;
     this.message.local_direccion = this.$route.params.local_direccion;
+    this.message.correo_usuario = this.$store.state.user.email;
+    console.log(this);
   },
 
   methods: {
@@ -77,6 +88,8 @@ export default {
           this.message.local_nombre = "";
           this.message.local_direccion = "";
           this.message.message = "";
+          this.message.correo_usuario = "";
+          // this.message.correo_usuario = $store.state;
         })
         .catch((error) => {
           console.log(error);
