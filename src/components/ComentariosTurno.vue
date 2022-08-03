@@ -2,6 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-5">
       <h3 class="text-center">Deje su comentario</h3>
+      <h4>{{ $store.state.user.email }}</h4>
       <form @submit.prevent="guardarcomentarios">
         <div class="form-group">
           <label>Id</label>
@@ -64,6 +65,7 @@ export default {
     this.message.local_id = this.$route.params.local_id;
     this.message.local_nombre = this.$route.params.local_nombre;
     this.message.local_direccion = this.$route.params.local_direccion;
+    this.message.user = this.$store.state.user.email;
   },
 
   methods: {
@@ -71,12 +73,13 @@ export default {
       event.preventDefault();
       db.collection("messages")
         .add(this.message)
-        .then((ref) => {
-          alert("Sus comentarios fueron enviados! " + ref);
+        .then(() => {
+          alert("Sus comentarios fueron enviados! ");
           this.message.local_id = "";
           this.message.local_nombre = "";
           this.message.local_direccion = "";
           this.message.message = "";
+          // this.message.user = {{ $store.state.user.email }};
         })
         .catch((error) => {
           console.log(error);
