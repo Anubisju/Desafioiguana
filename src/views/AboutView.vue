@@ -24,12 +24,12 @@
   <br />
   <!-- aqui les deje un for que muestra las farmacias de turno
   (ahí lo ordenan como quieran ^^) -->
-  <h2>Listado de farmacias</h2>
+  <!--  <h2>Listado de farmacias</h2>
   <ul>
     <li v-for="item in farmaciasDeTurno" :key="item.id">
       {{ item.local_nombre }} => {{ item.localidad_nombre }}
     </li>
-  </ul>
+  </ul> -->
 </template>
 
 <script>

@@ -227,4 +227,14 @@ form.register input[type="submit"] {
   cursor: pointer;
   text-transform: uppercase;
 }
+.col-sm-10 {
+  background-color: white;
+  opacity: 0.8;
+  border: #2c3e50;
+  border: 10px;
+}
+.login {
+  background-color: white;
+  opacity: 0.8;
+}
 </style>
