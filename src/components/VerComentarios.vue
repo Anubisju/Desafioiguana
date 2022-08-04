@@ -67,7 +67,7 @@ export default {
                 a._delegate._document.data.value.mapValue.fields.message
                   .stringValue,
               usuario:
-                a._delegate._document.data.value.mapValue.fields.usuario
+                a._delegate._document.data.value.mapValue.fields.user
                   .stringValue,
             })
           );
