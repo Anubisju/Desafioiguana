@@ -1,15 +1,28 @@
 <template>
   <div class="container bg-light">
-    <h1>Comentarios para farmacia:</h1>
+    <h1>
+      Comentarios para farmacia: {{ this.$route.params.local_nombre }} id:
+      {{ this.$route.params.local_id }}
+    </h1>
+
     <template v-if="comentarios.length > 0">
-      <ul>
-        <template v-for="(comentario, i) in comentarios" :key="i">
-          <li v-if="comentario.local_id === this.message.local_id">
-            {{ comentario.message }} - {{ comentario.usuario }} -
-            {{ comentario.local_nombre }}
-          </li>
-        </template>
-      </ul>
+      <table class="table">
+        <thead>
+          <th>Comentario</th>
+          <th>Usuario</th>
+          <th>Dirección</th>
+        </thead>
+
+        <tbody>
+          <template v-for="(comentario, i) in comentarios" :key="i">
+            <tr v-if="comentario.local_id === this.message.local_id">
+              <td>{{ comentario.message }}</td>
+              <td>{{ comentario.usuario }}</td>
+              <td>{{ comentario.local_direccion }}</td>
+            </tr>
+          </template>
+        </tbody>
+      </table>
     </template>
     <template v-else> <p>cargando...</p> </template>
   </div>
@@ -22,16 +35,25 @@
 h1 {
   margin-top: 12px;
 }
-ul {
-  padding: 0;
-}
-ul > li {
+.table {
   list-style: none;
   padding: 1em;
   border: 1px solid rgb(194, 194, 194);
   border-radius: 5px;
   margin-top: 5px;
 }
+thead {
+  color: #000000;
+  border: 2px solid rgb(32, 110, 255);
+  border-left: 5px rgb(183, 15, 15);
+}
+/* .table > tr {
+  list-style: none;
+  padding: 1em;
+  border: 1px solid rgb(194, 194, 194);
+  border-radius: 5px;
+  margin-top: 5px;
+} */
 </style>
 <script>
 import { db } from "../firebase/index";
@@ -71,6 +93,9 @@ export default {
                   .stringValue,
               usuario:
                 a._delegate._document.data.value.mapValue.fields.user
+                  .stringValue,
+              local_direccion:
+                a._delegate._document.data.value.mapValue.fields.local_direccion
                   .stringValue,
             })
           );

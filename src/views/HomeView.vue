@@ -10,13 +10,16 @@
         @input="filtraFarmacias($event)"
         v-model.lazy="farmaciaNombre"
       />
-      <input
-        type="text"
-        class="input is-rounded btn"
-        placeholder="🔎Buscar Comuna"
-        @input="filtraComunas($event)"
-        v-model.lazy="comunaNombre"
-      />
+      <br /><br />
+      <div class="mover">
+        <input
+          type="text"
+          class="input is-rounded btn"
+          placeholder="🔎Buscar Comuna"
+          @input="filtraComunas($event)"
+          v-model.lazy="comunaNombre"
+        />
+      </div>
       <!-- <button class="button" v-on:click="searchData">🔎Buscar Farmacia</button> -->
     </div>
 
@@ -54,9 +57,17 @@
               class="btn btn-primary"
               >Comentarios
             </router-link>
-
+            <br />
+            <br />
             <router-link
-              :to="{ name: 'ver', params: { local_id: item.local_id } }"
+              :to="{
+                name: 'ver',
+                params: {
+                  local_id: item.local_id,
+                  local_nombre: item.local_nombre,
+                  local_direccion: item.local_direccion,
+                },
+              }"
               class="btn btn-primary"
               >Ver Comentarios
             </router-link>

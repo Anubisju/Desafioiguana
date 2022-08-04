@@ -34,7 +34,7 @@ const routes = [
     }
   },
   {
-    path: '/ver/:local_id',
+    path: '/ver/:local_id/local_nombre/local_direccion',
     name: 'ver',
     component: () => import('../components/VerComentarios.vue'),
     meta: {
