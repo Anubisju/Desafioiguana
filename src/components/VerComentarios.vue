@@ -1,11 +1,12 @@
 <template>
   <div class="container bg-light">
-    <h1>Comentarios para farmacia: {{ comentarios[0].local_nombre }}</h1>
+    <h1>Comentarios para farmacia:</h1>
     <template v-if="comentarios.length > 0">
       <ul>
         <template v-for="(comentario, i) in comentarios" :key="i">
           <li v-if="comentario.local_id === this.message.local_id">
-            {{ comentario.message }} - {{ comentario.usuario }}
+            {{ comentario.message }} - {{ comentario.usuario }} -
+            {{ comentario.local_nombre }}
           </li>
         </template>
       </ul>
@@ -47,7 +48,9 @@ export default {
     this.message.local_id = this.$route.params.local_id;
     /* this.message.local_nombre = this.$route.params.local_nombre;
     this.message.local_direccion = this.$route.params.local_direccion; */
-    this.comentarios = this.getComentarios();
+    this.comentarios = this.getComentarios().filter(
+      (c) => this.message.local_id == c.local_id
+    );
   },
   methods: {
     getComentarios() {
