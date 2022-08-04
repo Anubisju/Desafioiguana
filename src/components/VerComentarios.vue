@@ -4,7 +4,7 @@
     <template v-if="comentarios.length > 0">
       <ul>
         <template v-for="(comentario, i) in comentarios" :key="i">
-          <li v-if="comentario.local_id === this.message.local_id">
+          <li v-if="comentario.local_id == this.message.local_id">
             {{ comentario.message }} - {{ comentario.usuario }}
           </li>
         </template>
